@@ -1,12 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_blutdrucktagebuch/screens/add_screen.dart';
+import 'package:flutter_blutdrucktagebuch/screens/history_screen.dart';
 import 'package:numberpicker/numberpicker.dart';
 
 void main() => runApp(MyApp());
 
 //App
-class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
+class MyApp extends StatefulWidget {
+
+  List<Widget> _screens = <Widget>[
+    AddScreen(),
+    HistoryScreen()
+  ];
+
+  @override
+  State<StatefulWidget> createState() => _AppState();
+
+}
+
+class _AppState extends State<MyApp> {
+
+  int _selectedScreenIndex = 0;
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -16,59 +31,24 @@ class MyApp extends StatelessWidget {
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       home: Scaffold(
-          appBar: AppBar(
-            title: Text("Hinzufügen"),
-          ),
-        body: AddScreen(),
-      ),
-    );
-  }
-}
-
-/*class MyHomePage extends StatefulWidget {
-  MyHomePage({Key key, this.title}) : super(key: key);
-
-  final String title;
-
-  @override
-  _MyHomePageState createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
-            ),
+        appBar: AppBar(
+          title: Text("Hinzufügen"),
+        ),
+        body: widget._screens.elementAt(_selectedScreenIndex),
+        bottomNavigationBar: BottomNavigationBar(
+          items: [
+            BottomNavigationBarItem(icon: Icon(Icons.add), label: "Hinzufügen"),
+            BottomNavigationBarItem(icon: Icon(Icons.calendar_today), label: "Geschichte"),
           ],
+          currentIndex: _selectedScreenIndex,
+          onTap: (index) {
+            setState(() {
+              _selectedScreenIndex = index;
+            });
+          },
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
-}*/
+
+}
