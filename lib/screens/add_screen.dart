@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_blutdrucktagebuch/widgets/BoldText.dart';
+import 'package:flutter_blutdrucktagebuch/widgets/bold_text.dart';
 import 'package:numberpicker/numberpicker.dart';
 
 class AddScreen extends StatefulWidget {
@@ -45,7 +45,7 @@ class PickerArea extends StatelessWidget {
           children: [
             BoldText("Systolisch"),
             Text("mmHg"),
-            Text("PICKER")
+            MyPicker()
           ],
         ),
         Column(
@@ -62,6 +62,38 @@ class PickerArea extends StatelessWidget {
             Text("PICKER")
           ],
         )
+      ],
+    );
+  }
+
+}
+
+class MyPicker extends StatefulWidget {
+
+  @override
+  State<StatefulWidget> createState() {
+    return _MyPickerState();
+  }
+
+}
+
+class _MyPickerState extends State<MyPicker> {
+
+  int value = 144;
+
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    throw Column(
+      children: [
+        Text(
+          'Wert: $value',
+        ),
+        NumberPicker.integer(initialValue: value, minValue: 20, maxValue: 200, onChanged: (newValue) {
+          setState(() {
+            value = newValue;
+          });
+        })
       ],
     );
   }
