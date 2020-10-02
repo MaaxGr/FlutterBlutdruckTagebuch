@@ -2,9 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_blutdrucktagebuch/screens/add_screen.dart';
 import 'package:numberpicker/numberpicker.dart';
 
-void main() {
-  runApp(MyApp());
-}
+void main() => runApp(MyApp());
 
 //App
 class MyApp extends StatelessWidget {
@@ -17,12 +15,17 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: AddScreen(),
+      home: Scaffold(
+          appBar: AppBar(
+            title: Text("Hinzufügen"),
+          ),
+        body: AddScreen(),
+      ),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
+/*class MyHomePage extends StatefulWidget {
   MyHomePage({Key key, this.title}) : super(key: key);
 
   final String title;
@@ -68,4 +71,4 @@ class _MyHomePageState extends State<MyHomePage> {
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
-}
+}*/
