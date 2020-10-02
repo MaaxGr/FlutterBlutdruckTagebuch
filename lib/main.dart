@@ -6,18 +6,19 @@ void main() => runApp(MyApp());
 
 //App
 class MyApp extends StatefulWidget {
-
   List<Screen> _screens = [
     Screen(
-        topBarText: "Hinzufügen",
-        body: AddScreen(),
-        bottomBarIconData: Icons.add,
-        bottomBarText: "Hinzufügen"),
+      topBarText: "Hinzufügen",
+      body: AddScreen(),
+      bottomBarIconData: Icons.add,
+      bottomBarText: "Hinzufügen",
+    ),
     Screen(
-        topBarText: "Geschichte",
-        body: HistoryScreen(),
-        bottomBarIconData: Icons.calendar_today,
-        bottomBarText: "Geschichte"),
+      topBarText: "Geschichte",
+      body: HistoryScreen(),
+      bottomBarIconData: Icons.calendar_today,
+      bottomBarText: "Geschichte",
+    ),
   ];
 
   @override
