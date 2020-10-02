@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_blutdrucktagebuch/screens/add_screen.dart';
-import 'package:flutter_blutdrucktagebuch/screens/history_screen.dart';
+import 'package:flutter_blutdrucktagebuch/screens/add/add_screen.dart';
+import 'package:flutter_blutdrucktagebuch/screens/history/history_screen.dart';
 
 void main() => runApp(MyApp());
 

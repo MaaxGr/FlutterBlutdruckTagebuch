@@ -15,8 +15,6 @@ class HistoryScreen extends StatefulWidget {
   State<StatefulWidget> createState() {
     return _HistoryScreenState();
   }
-
-
 }
 
 class _HistoryScreenState extends State<HistoryScreen> {
