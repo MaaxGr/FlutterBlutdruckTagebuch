@@ -13,8 +13,6 @@ class AddScreen extends StatefulWidget {
 
 class _AddScreenState extends State<AddScreen> {
 
-  int _systolischValue = 144;
-
   @override
   Widget build(BuildContext context) => Center(
     child: Column(
@@ -34,34 +32,49 @@ class PickerArea extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
-        Column(
-          children: [
-            BoldText("Systolisch"),
-            Text("mmHg"),
-            MyPicker()
-          ],
-        ),
-        Column(
-          children: [
-            BoldText("Diastolisch"),
-            Text("mmHg"),
-            Text("PICKER")
-          ],
-        ),
-        Column(
-          children: [
-            BoldText("Puls"),
-            Text("bpm"),
-            Text("PICKER")
-          ],
-        )
+        LabledPickerGroup("Systolisch", "mmHg", 144),
+        LabledPickerGroup("Diastolisch", "mmHg", 20),
+        LabledPickerGroup("Puls", "bpm", 80)
       ],
     );
   }
 
 }
 
+//Labled Picker Group
+class LabledPickerGroup extends StatefulWidget{
+  //fields
+  final String title;
+  final String unit;
+  int value;
+
+  //Constructors
+  LabledPickerGroup(this.title,this.unit,this.value);
+
+  //functions
+  @override
+  State<StatefulWidget> createState() => _LabledPickerGroupState();
+}
+
+class _LabledPickerGroupState extends State<LabledPickerGroup>{
+
+  @override
+  Widget build(BuildContext context) => Column(
+    children: [
+      BoldText(widget.title),
+      Text(widget.unit),
+      MyPicker(widget.value)
+    ],
+  );
+}
+
+//Picker
 class MyPicker extends StatefulWidget {
+  //fields
+  int value = 144;
+
+  //Constructor
+  MyPicker(this.value);
 
   @override
   State<StatefulWidget> createState() {
@@ -71,24 +84,13 @@ class MyPicker extends StatefulWidget {
 }
 
 class _MyPickerState extends State<MyPicker> {
-
-  int value = 144;
-
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
-    throw Column(
-      children: [
-        Text(
-          'Wert: $value',
-        ),
-        NumberPicker.integer(initialValue: value, minValue: 20, maxValue: 200, onChanged: (newValue) {
-          setState(() {
-            value = newValue;
-          });
-        })
-      ],
-    );
+    return NumberPicker.integer(initialValue: widget.value, minValue: 20, maxValue: 200, onChanged: (newValue) {
+      setState(() {
+        widget.value = newValue;
+      });
+    });
   }
 
 }
