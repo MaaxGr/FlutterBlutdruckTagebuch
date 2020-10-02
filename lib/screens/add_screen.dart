@@ -16,21 +16,14 @@ class _AddScreenState extends State<AddScreen> {
   int _systolischValue = 144;
 
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text("Hinzufügen"),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            PickerArea()
-          ],
-        ),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
-    );
-  }
+  Widget build(BuildContext context) => Center(
+    child: Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: <Widget>[
+        PickerArea()
+      ],
+    ),
+  );
 
 }
 
