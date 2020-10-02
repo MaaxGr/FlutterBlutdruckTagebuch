@@ -2,12 +2,14 @@
 import 'package:flutter/cupertino.dart';
 
 class BoldText extends StatelessWidget {
-  
-  String text;
-  
+
+  final String text;
+
+  BoldText(this.text);
+
   @override
   Widget build(BuildContext context) {
-    return Text(text);
+    return Text(text, style: TextStyle(fontWeight: FontWeight.bold));
   }
-  
+
 }

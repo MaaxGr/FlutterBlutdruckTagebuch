@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_blutdrucktagebuch/widgets/BoldText.dart';
 import 'package:numberpicker/numberpicker.dart';
 
 class AddScreen extends StatefulWidget {
@@ -42,24 +43,21 @@ class PickerArea extends StatelessWidget {
       children: [
         Column(
           children: [
-            Text(
-                "Systolisch",
-              style: TextStyle(fontWeight: FontWeight.bold),
-            ),
+            BoldText("Systolisch"),
             Text("mmHg"),
             Text("PICKER")
           ],
         ),
         Column(
           children: [
-            Text("Diastolisch"),
+            BoldText("Diastolisch"),
             Text("mmHg"),
             Text("PICKER")
           ],
         ),
         Column(
           children: [
-            Text("Puls"),
+            BoldText("Puls"),
             Text("bpm"),
             Text("PICKER")
           ],
