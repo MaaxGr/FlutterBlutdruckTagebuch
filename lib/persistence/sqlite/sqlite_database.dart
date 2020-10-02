@@ -14,7 +14,7 @@ class SqliteDatabase {
         join(await getDatabasesPath(), 'main.db'),
         onCreate: (db, version) {
           return db.execute(
-              "CREATE TABLE blood_pressure_measurement (id INTEGER PRIMARY KEY, systolic INTEGER, diastolic INTEGER, pulse INTEGER)"
+              "CREATE TABLE blood_pressure_measurement (id INTEGER PRIMARY KEY, systolic INTEGER, diastolic INTEGER, pulse INTEGER, time INTEGER)"
           );
         },
         version: 1
@@ -37,7 +37,8 @@ class SqliteDatabase {
         id: entry['id'],
         systolic: entry['systolic'],
         diastolic: entry['diastolic'],
-        pulse: entry['pulse']
+        pulse: entry['pulse'],
+        time: DateTime.fromMillisecondsSinceEpoch(entry['time'])
       );
     });
   }

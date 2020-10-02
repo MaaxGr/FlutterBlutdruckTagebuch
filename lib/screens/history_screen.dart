@@ -50,7 +50,8 @@ class _HistoryScreenState extends State<HistoryScreen> {
             id: DateTime.now().millisecondsSinceEpoch ~/ 1000,
             systolic: Random().nextInt(200),
             diastolic: Random().nextInt(200),
-            pulse: Random().nextInt(200)
+            pulse: Random().nextInt(200),
+            time: DateTime.now()
           ));
         },
       ),

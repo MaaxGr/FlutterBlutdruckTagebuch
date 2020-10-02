@@ -15,6 +15,7 @@ class AddScreen extends StatefulWidget {
 class _AddScreenState extends State<AddScreen> {
   //fields
   final PickerArea pickerArea = PickerArea();
+  final TimerView timer = TimerView();
 
   @override
   Widget build(BuildContext context) => Center(
@@ -23,25 +24,12 @@ class _AddScreenState extends State<AddScreen> {
           children: <Widget>[
             pickerArea,
             SizedBox(height: 16),
-            TimerView(),
+            timer,
             SizedBox(height: 16),
             FlatButton(
                 onPressed: () {
                   final pickerVals = pickerArea.getPickerValues();
-                  showDialog(
-                      context: context,
-                      builder: (context) {
-                        return SimpleDialog(
-                          children: [
-                            Text("Test: Values are $pickerVals"),
-                            FlatButton(
-                                onPressed: () {
-                                  Navigator.pop(context);
-                                },
-                                child: Text("close"))
-                          ],
-                        );
-                      });
+                  final time = DateTime.now();
                 },
                 child: Text("Hinzufügen",
                   style: TextStyle(

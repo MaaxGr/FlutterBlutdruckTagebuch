@@ -12,7 +12,6 @@ const clockTextStyle = TextStyle(
 class TimerView extends StatefulWidget{
   @override
   State<StatefulWidget> createState() => _TimerViewState();
-
 }
 
 class _DigitalClockTimerState extends State<TimerView>{
@@ -35,7 +34,7 @@ class _TimerViewState extends State<TimerView>{
   @override
   void initState() {
     //Start timer
-    _timer = Timer.periodic(Duration(seconds: 10), (timer) {
+    _timer = Timer.periodic(Duration(seconds: 1), (timer) {
       setState(() {
         _time = DateTime.now();
       });
