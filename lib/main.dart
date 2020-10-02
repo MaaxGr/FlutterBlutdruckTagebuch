@@ -1,29 +1,36 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_blutdrucktagebuch/screens/add_screen.dart';
 import 'package:flutter_blutdrucktagebuch/screens/history_screen.dart';
-import 'package:numberpicker/numberpicker.dart';
 
 void main() => runApp(MyApp());
 
 //App
 class MyApp extends StatefulWidget {
 
-  List<Widget> _screens = <Widget>[
-    AddScreen(),
-    HistoryScreen()
+  List<Screen> _screens = [
+    Screen(
+        topBarText: "Hinzufügen",
+        body: AddScreen(),
+        bottomBarIconData: Icons.add,
+        bottomBarText: "Hinzufügen"),
+    Screen(
+        topBarText: "Geschichte",
+        body: HistoryScreen(),
+        bottomBarIconData: Icons.calendar_today,
+        bottomBarText: "Geschichte"),
   ];
 
   @override
   State<StatefulWidget> createState() => _AppState();
-
 }
 
 class _AppState extends State<MyApp> {
-
   int _selectedScreenIndex = 0;
 
   @override
   Widget build(BuildContext context) {
+    final Screen currentScreen = widget._screens[_selectedScreenIndex];
+
     return MaterialApp(
       title: 'Blutdruck-Tagebuch',
       theme: ThemeData(
@@ -32,13 +39,15 @@ class _AppState extends State<MyApp> {
       ),
       home: Scaffold(
         appBar: AppBar(
-          title: Text("Hinzufügen"),
+          title: Text(currentScreen.topBarText),
         ),
-        body: widget._screens.elementAt(_selectedScreenIndex),
+        body: currentScreen.body,
         bottomNavigationBar: BottomNavigationBar(
           items: [
-            BottomNavigationBarItem(icon: Icon(Icons.add), label: "Hinzufügen"),
-            BottomNavigationBarItem(icon: Icon(Icons.calendar_today), label: "Geschichte"),
+            for (Screen screen in widget._screens)
+              BottomNavigationBarItem(
+                  icon: Icon(screen.bottomBarIconData),
+                  label: screen.bottomBarText)
           ],
           currentIndex: _selectedScreenIndex,
           onTap: (index) {
@@ -50,5 +59,16 @@ class _AppState extends State<MyApp> {
       ),
     );
   }
+}
 
+class Screen {
+  String topBarText;
+
+  Widget body;
+
+  IconData bottomBarIconData;
+  String bottomBarText;
+
+  Screen(
+      {this.topBarText, this.body, this.bottomBarIconData, this.bottomBarText});
 }
