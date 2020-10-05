@@ -1,15 +1,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_blutdrucktagebuch/screens/add/add_viewmodel.dart';
 import 'package:flutter_blutdrucktagebuch/screens/add/picker/labled_picker_group.dart';
-import 'package:flutter_blutdrucktagebuch/screens/add/picker/my_picker.dart';
 import 'package:flutter_blutdrucktagebuch/widgets/TimerView.dart';
-import 'package:flutter_blutdrucktagebuch/widgets/bold_text.dart';
-import 'package:numberpicker/numberpicker.dart';
-import 'package:slide_digital_clock/slide_digital_clock.dart';
 
 class AddScreen extends StatefulWidget {
+
+  final String appBarTitle;
+
+  AddScreen({this.appBarTitle});
+
   @override
   State<StatefulWidget> createState() {
     return _AddScreenState();
@@ -19,29 +19,34 @@ class AddScreen extends StatefulWidget {
 class _AddScreenState extends State<AddScreen> {
   //fields
   @override
-  Widget build(BuildContext context) => Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            PickerArea(),
-            SizedBox(height: 16),
-            TimerView(),
-            SizedBox(height: 16),
-            FlatButton(
-                onPressed: () {
-                  AddViewModel.instance.addElement();
-                },
-                child: Text("Hinzufügen",
-                  style: TextStyle(
-                    fontSize: 18
-                  ),),
-            color: Colors.lightBlue,
-            textColor: Colors.white,
-            minWidth: 200,
-            padding: EdgeInsets.all(16),)
-          ],
+  Widget build(BuildContext context) => Scaffold(
+    appBar: AppBar(
+      title: Text(widget.appBarTitle),
+    ),
+    body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              PickerArea(),
+              SizedBox(height: 16),
+              TimerView(),
+              SizedBox(height: 16),
+              FlatButton(
+                  onPressed: () {
+                    AddViewModel.instance.addElement();
+                  },
+                  child: Text("Hinzufügen",
+                    style: TextStyle(
+                      fontSize: 18
+                    ),),
+              color: Colors.lightBlue,
+              textColor: Colors.white,
+              minWidth: 200,
+              padding: EdgeInsets.all(16),)
+            ],
+          ),
         ),
-      );
+  );
 }
 
 //PickerArea

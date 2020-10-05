@@ -8,14 +8,12 @@ void main() => runApp(MyApp());
 class MyApp extends StatefulWidget {
   List<Screen> _screens = [
     Screen(
-      topBarText: "Hinzufügen",
-      body: AddScreen(),
+      body: AddScreen(appBarTitle: "Hinzufügen"),
       bottomBarIconData: Icons.add,
       bottomBarText: "Hinzufügen",
     ),
     Screen(
-      topBarText: "Geschichte",
-      body: HistoryScreen(),
+      body: HistoryScreen(appBarTitle: "Geschichte"),
       bottomBarIconData: Icons.calendar_today,
       bottomBarText: "Geschichte",
     ),
@@ -39,16 +37,14 @@ class _AppState extends State<MyApp> {
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       home: Scaffold(
-        appBar: AppBar(
-          title: Text(currentScreen.topBarText),
-        ),
         body: currentScreen.body,
         bottomNavigationBar: BottomNavigationBar(
           items: [
             for (Screen screen in widget._screens)
               BottomNavigationBarItem(
-                  icon: Icon(screen.bottomBarIconData),
-                  label: screen.bottomBarText)
+                icon: Icon(screen.bottomBarIconData),
+                label: screen.bottomBarText,
+              )
           ],
           currentIndex: _selectedScreenIndex,
           onTap: (index) {
@@ -63,13 +59,12 @@ class _AppState extends State<MyApp> {
 }
 
 class Screen {
-  String topBarText;
-
+  // body
   Widget body;
 
+  // footer
   IconData bottomBarIconData;
   String bottomBarText;
 
-  Screen(
-      {this.topBarText, this.body, this.bottomBarIconData, this.bottomBarText});
+  Screen({this.body, this.bottomBarIconData, this.bottomBarText});
 }
